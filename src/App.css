@@ -58,7 +58,7 @@
 .text-right:hover{
   color: red;
 }
-.sort_select:after{
+.sort_selected:after{
   content: '\f00c';
   font-family: FontAwesome;
   font-weight: normal;

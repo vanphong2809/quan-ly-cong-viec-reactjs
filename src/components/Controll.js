@@ -5,8 +5,8 @@ class App extends Component {
     render() {
         return (
             <div className="row mt-15">
-                <Search></Search>
-                <Sort></Sort>
+                <Search onSearch={this.props.onSearch}></Search>
+                <Sort onSort={this.props.onSort}></Sort>
             </div>
         )
     }

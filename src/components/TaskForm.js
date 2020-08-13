@@ -4,8 +4,34 @@ class TaskForm extends Component {
     constructor(props){
         super(props);
         this.state={
+            id: '',
             name: '',
             status: false,
+        }
+    }
+    componentDidMount(){
+        if(this.props.taskEditing){
+            this.setState({
+                id:this.props.taskEditing.id,
+                name:this.props.taskEditing.name,
+                status:this.props.taskEditing.status,
+            })
+        }
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps && nextProps.taskEditing){
+            this.setState({
+                id: nextProps.taskEditing.id,
+                name: nextProps.taskEditing.name,
+                status: nextProps.taskEditing.status
+            })
+        }else if(!nextProps.taskEditing){
+            console.log("sua->them");
+            this.setState({
+                id: '',
+                name: '',
+                status:false,
+            })
         }
     }
     onCloseForm=()=>{
@@ -34,10 +60,11 @@ class TaskForm extends Component {
         })
     }
     render() {
+        var {id}=this.state;
         return (
             <div className="panel panel-warning">
                 <div className="panel-heading">
-                    <h3 className="panel-title">Thêm Công Việc
+                    <h3 className="panel-title">{id!==''?'Cập nhật công việc':'Thêm công việc'}
                     <span 
                         className="fa fa-times-circle text-right"
                         onClick={this.onCloseForm}
@@ -58,7 +85,7 @@ class TaskForm extends Component {
                         <br />
                         <div className="text-center">
                             <button type="submit" className="btn btn-warning">
-                            <span className="fa fa-plus mr-5"></span>Thêm</button>&nbsp;
+                            <span className="fa fa-plus mr-5"></span>{id!==''?'Cập nhật':'Thêm'}</button>&nbsp;
                             <button type="button" className="btn btn-danger" onClick={this.onClear}>
                             <span className="fa fa-window-close mr-5"></span>Hủy Bỏ</button>
                         </div>

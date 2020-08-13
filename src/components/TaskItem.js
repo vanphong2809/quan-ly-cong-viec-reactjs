@@ -6,6 +6,9 @@ class TaskItem extends Component {
     onDeleteTask = () => {
         this.props.onDeleteTask(this.props.task.id)
     }
+    onUpdateTask = () => {
+        this.props.onUpdateTask(this.props.task.id)
+    }
     render() {
         var { task, index } = this.props;
         return (
@@ -20,7 +23,7 @@ class TaskItem extends Component {
                     
                 </td>
                 <td className="text-center">
-                    <button type="button" className="btn btn-warning">
+                    <button type="button" className="btn btn-warning" onClick={this.onUpdateTask}>
                         <span className="fa fa-pencil mr-5"></span>Sửa
                     </button>
                         &nbsp;
